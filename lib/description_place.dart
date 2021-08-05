@@ -58,6 +58,7 @@ class DescriptionPlace extends StatelessWidget {
       margin: new EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
       child: new Text(
         descriptionPlace,
+        //overflow: TextOverflow.ellipsis,
         style: const TextStyle(
             fontFamily: "Lato",
             fontSize: 16.0,

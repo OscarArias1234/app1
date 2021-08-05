@@ -1,5 +1,7 @@
+import 'package:app1/review_list.dart';
 import 'package:flutter/material.dart';
 import 'description_place.dart';
+import 'review.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,7 +9,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   //*****ESTAS VARIABLES SON TEMPORALES SIMULANDO UN ENVIO O RECEPCION DE DATOS***************
-  String namePlace = "TITULO DESC_PLACE";
+  String namePlace = "TITULO";
   int stars = 4;
   String descriptionPlace =
       "Este el parrafo que ira ubicado en la vista principal y es proveniente de la vista de DescriptionPlace";
@@ -37,7 +39,8 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text("Hola Mundo desde scaffold"),
           ),
-          body: new DescriptionPlace(namePlace, stars, descriptionPlace),
+          body: ReviewList(),
+          //DescriptionPlace(namePlace, stars, descriptionPlace),
         ));
   }
 }

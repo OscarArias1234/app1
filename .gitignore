@@ -1,3 +1,8 @@
+#files IMG
+*.png
+*.jpeg
+*.jpg
+
 # Miscellaneous
 *.class
 *.log
