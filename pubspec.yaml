@@ -90,3 +90,8 @@ flutter:
     - family: Lato
       fonts:
         - asset: fonts/Lato-Regular.ttf
+
+    - family: Lato-Bold
+      fonts:
+        - asset: fonts/Lato-Bold.ttf
+

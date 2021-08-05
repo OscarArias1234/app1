@@ -2,6 +2,7 @@ import 'package:app1/review_list.dart';
 import 'package:flutter/material.dart';
 import 'description_place.dart';
 import 'review.dart';
+import 'gradient_back.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,11 +37,19 @@ class MyApp extends StatelessWidget {
         home: //MyHomePage(title: 'Flutter Demo Home Page'),
             //************************************** */
             Scaffold(
-          appBar: AppBar(
-            title: Text("Hola Mundo desde scaffold"),
+          body: Stack(
+            //estack para sobre poner elementos
+            children: <Widget>[
+              ListView(
+                //list view para dejarlo deslizable o scroll
+                children: <Widget>[
+                  DescriptionPlace(namePlace, stars, descriptionPlace),
+                  ReviewList(),
+                ],
+              ),
+              GradientBack("Popular")
+            ],
           ),
-          body: ReviewList(),
-          //DescriptionPlace(namePlace, stars, descriptionPlace),
         ));
   }
 }
