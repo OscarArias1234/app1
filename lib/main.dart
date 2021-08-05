@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:app1/description_place.dart';
+import 'description_place.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  //*****ESTAS VARIABLES SON TEMPORALES SIMULANDO UN ENVIO O RECEPCION DE DATOS***************
+  String namePlace = "TITULO DESC_PLACE";
+  int stars = 4;
+  String descriptionPlace =
+      "Este el parrafo que ira ubicado en la vista principal y es proveniente de la vista de DescriptionPlace";
+  //**************************** */
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -25,14 +32,12 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: //MyHomePage(title: 'Flutter Demo Home Page'),
-
+            //************************************** */
             Scaffold(
           appBar: AppBar(
             title: Text("Hola Mundo desde scaffold"),
           ),
-          body: Center(
-            child: Text("Hola mundo desde el hijo del body"),
-          ),
+          body: new DescriptionPlace(namePlace, stars, descriptionPlace),
         ));
   }
 }
