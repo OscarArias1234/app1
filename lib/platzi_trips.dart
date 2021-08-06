@@ -1,6 +1,7 @@
 import 'package:app1/profile_trips.dart';
 import 'package:app1/search_trips.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 import 'home_trips.dart';
 
@@ -23,6 +24,7 @@ class _PlatziTrips extends State<PlatziTrips> {
 
   void onTapTapped(int index) {
     setState(() {
+      //llamar la funcionalidad y controlar el estado del WIDGET
       indexTap = index;
     });
   }
@@ -33,23 +35,43 @@ class _PlatziTrips extends State<PlatziTrips> {
 
     //**************CREAMOS LA BARRA DE NAVEGACION O MENU************************ */
     return Scaffold(
+      //se crea el curvednavigationbar para que tenga un mejor efecto la barra menu
+      bottomNavigationBar: CurvedNavigationBar(
+        height: 50.0,
+        color: Color(0xFF584CD1),
+        backgroundColor: Colors.white,
+        onTap: onTapTapped,
+        items: <Widget>[
+          Icon(
+            Icons.home,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.search,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.person,
+            size: 30,
+            color: Colors.white,
+          ),
+        ],
+      ),
+
       body: widgetsChildren[indexTap], //inicializador del indice
-      bottomNavigationBar: Theme(
+      /* bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-          canvasColor: Colors.white,
+          canvasColor: Colors.black,
           primaryColor: Colors.purple,
         ),
-        child: BottomNavigationBar(
-            onTap: onTapTapped,
-            currentIndex: indexTap,
-            items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("")),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.search), title: Text("")),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person), title: Text("")),
-            ]),
-      ),
+        child: CurvedNavigationBar(
+          backgroundColor: Colors.blueAccent,
+          onTap: onTapTapped,
+          // currentIndex: indexTap,
+        ),
+      ),*/
     );
   }
 }
