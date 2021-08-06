@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'floating_action_button_green.dart';
 
 class CardImage extends StatelessWidget {
   String pathImage = "assets/img/beach.jpeg";
@@ -30,10 +31,7 @@ class CardImage extends StatelessWidget {
 
     return Stack(
       alignment: Alignment(0.9, 1.1),
-      children: <Widget>[
-        card,
-        //FloatingActionButtonGreen()
-      ],
+      children: <Widget>[card, FloatingActionButtonGreen()],
     );
   }
 }
