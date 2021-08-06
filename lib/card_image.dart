@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'floating_action_button_green.dart';
+<<<<<<< HEAD
 
 class  CardImage extends StatelessWidget {
+=======
+>>>>>>> 807d730 (se creo el boton flotante de favorito con las propiedades para enviar un mensaje emergente en un showBar y cambiar el icono segun sea la seleccion y se mostro correctamente en la app)
 
   String pathImage = "assets/img/beach.jpeg";
 
@@ -39,11 +42,16 @@ class  CardImage extends StatelessWidget {
     );
 
     return Stack(
+<<<<<<< HEAD
       alignment: Alignment(0.9,1.1),
       children: <Widget>[
         card,
         FloatingActionButtonGreen()
       ],
+=======
+      alignment: Alignment(0.9, 1.1),
+      children: <Widget>[card, FloatingActionButtonGreen()],
+>>>>>>> 807d730 (se creo el boton flotante de favorito con las propiedades para enviar un mensaje emergente en un showBar y cambiar el icono segun sea la seleccion y se mostro correctamente en la app)
     );
   }
 
