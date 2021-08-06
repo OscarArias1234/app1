@@ -19,7 +19,7 @@ class _PlatziTrips extends State<PlatziTrips> {
     //lista para mostar las vistas de menu de navegacion
     HomeTrips(),
     SearchTrips(),
-    ProfileTrips()
+    ProfileTrips("assets/img/ann.png", "Eliza Carrillo", "elicarrit@gmail.com")
   ];
 
   void onTapTapped(int index) {
