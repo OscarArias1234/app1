@@ -1,4 +1,3 @@
-import 'package:app1/profile_abbbar.dart';
 import 'package:app1/profile_trips.dart';
 import 'package:app1/search_trips.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class _PlatziTrips extends State<PlatziTrips> {
     //lista para mostar las vistas de menu de navegacion
     HomeTrips(),
     SearchTrips(),
-    ProfileAbbBar()
+    ProfileTrips("assets/img/ann.png", "Eliza Carrillo", "elicarrit@gmail.com")
   ];
 
   void onTapTapped(int index) {

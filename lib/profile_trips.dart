@@ -67,6 +67,8 @@ class ProfileTrips extends StatelessWidget {
       ],
     );
 
-    return profiledetails;
+    return Stack(
+      children: <Widget>[GradientBack("Profile"), profiledetails],
+    );
   }
 }
