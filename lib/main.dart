@@ -1,3 +1,4 @@
+import 'package:app1/platzi_trips.dart';
 import 'package:app1/review_list.dart';
 import 'package:flutter/material.dart';
 import 'description_place.dart';
@@ -10,48 +11,26 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  //*****ESTAS VARIABLES SON TEMPORALES SIMULANDO UN ENVIO O RECEPCION DE DATOS***************
-  String namePlace = "TITULO";
-  int stars = 4;
-  String descriptionPlace =
-      "Este el parrafo que ira ubicado en la vista principal y es proveniente de la vista de DescriptionPlace";
-  //**************************** */
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, // poner el banner DEBUG oculto
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.blue,
-        ),
-        home: //MyHomePage(title: 'Flutter Demo Home Page'),
-            //************************************** */
-            Scaffold(
-          body: Stack(
-            //estack para sobre poner elementos
-            children: <Widget>[
-              ListView(
-                //list view para dejarlo deslizable o scroll
-                children: <Widget>[
-                  DescriptionPlace(namePlace, stars, descriptionPlace),
-                  ReviewList(),
-                ],
-              ),
-              HeaderAppBar(),
-            ],
-          ),
-        ));
+      debugShowCheckedModeBanner: false, // poner el banner DEBUG oculto
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // Try running your application with "flutter run". You'll see the
+        // application has a blue toolbar. Then, without quitting the app, try
+        // changing the primarySwatch below to Colors.green and then invoke
+        // "hot reload" (press "r" in the console where you ran "flutter run",
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
+        primarySwatch: Colors.blue,
+      ),
+      home: PlatziTrips(),
+    );
   }
 }
 
