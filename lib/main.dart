@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'dart:async';
 import 'package:app1/User/bloc/bloc_user.dart';
+import 'package:app1/User/ui/screens/sign_in_screen.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'platzi_trips.dart';
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
         //puede ser accedida a todos los hijos de material app
         debugShowCheckedModeBanner: false, // poner el banner DEBUG oculto
         title: 'Flutter App Curso',
-        home: PlatziTrips(),
+        home: SignInScreen(),
+        //PlatziTrips(),
       ),
       bloc: UserBloc(),
     );
