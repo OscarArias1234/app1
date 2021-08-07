@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'place.dart';
-import 'floating_action_button_green.dart';
+import '../../../Place/model/place.dart';
+import '../../../widgets/floating_action_button_green.dart';
 
 class ProfilePlaceInfo extends StatelessWidget {
   //la variable place es creada en la clase place list donde se incorporan todos los parametro como si fueran arreglos

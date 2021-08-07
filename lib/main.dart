@@ -1,5 +1,6 @@
 import 'dart:async';
-
+import 'package:app1/User/bloc/bloc_user.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'platzi_trips.dart';
 
@@ -10,23 +11,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false, // poner el banner DEBUG oculto
-      title: 'Flutter App Curso',
-      theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-
-          ),
-      //home: PlatziTrips()
-      home: PlatziTrips(),
+    //acomodamos de fora global los providers para poder acceder facilmente a ellos
+    return BlocProvider(
+      child: MaterialApp(
+        //de esta forma implementamos los providers y toda la logica de user bloc
+        //puede ser accedida a todos los hijos de material app
+        debugShowCheckedModeBanner: false, // poner el banner DEBUG oculto
+        title: 'Flutter App Curso',
+        home: PlatziTrips(),
+      ),
+      bloc: UserBloc(),
     );
   }
 }
