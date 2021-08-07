@@ -79,6 +79,7 @@ flutter:
   assets:
     - assets/img/people.jpg
     - assets/img/ann.png
+    - assets/img/ann.jpg
     - assets/img/girl.jpg
     - assets/img/mountain.jpeg
     - assets/img/beach.jpeg
