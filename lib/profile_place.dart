@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'place.dart';
 import 'profile_place_info.dart';
-import 'profile_place.dart';
 
 class ProfilePlace extends StatelessWidget {
   String image;
@@ -11,6 +10,7 @@ class ProfilePlace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //* * */
     final photoCard = Container(
       margin: EdgeInsets.only(top: 10.0, bottom: 70.0),
       height: 220.0,
