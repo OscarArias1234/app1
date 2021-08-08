@@ -13,7 +13,7 @@ class FirebaseAuthAPI {
     GoogleSignInAuthentication gSA = await googleSignInAccount.authentication;
 
     FirebaseUser user = await _auth.signInWithCredential(
-        //aqui se comprueba la autenticacion
+        //aqui se comprueba la autenticacion de la cuenta, que sea una cuenta real
         GoogleAuthProvider.getCredential(
             idToken: gSA.idToken, accessToken: gSA.accessToken));
 
