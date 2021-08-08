@@ -47,7 +47,7 @@ class _SignInScreen extends State<SignInScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Welcome \n This is your Travel App",
+                "Bienvenido \n a mi primer App Flutter",
                 style: TextStyle(
                     fontSize: 37.0,
                     fontFamily: "Lato",
@@ -57,6 +57,7 @@ class _SignInScreen extends State<SignInScreen> {
               ButtonGreen(
                 text: "Login with Gmail",
                 onPressed: () {
+                  userBloc.signOut();
                   userBloc.signIn().then((FirebaseUser user) =>
                       print("El usuario es ${user.displayName}"));
                 },
