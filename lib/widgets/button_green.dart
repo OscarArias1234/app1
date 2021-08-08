@@ -3,10 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class ButtonGreen extends StatefulWidget {
+  //ACA SIMPLEMENTE SE CREAN LOS PARAMETROS GENERALES PARA PODER CREAR UN BOTTON
+  //REUSABLE PARA CUALQUIER VISTA DONDE SE LLAME Y SE LE ENVIEN LOS PARAETROS
   final String text;
   double width = 0.0;
   double height = 0.0;
   final VoidCallback onPressed;
+  //cuando se define este tipo de dato se convierte en una variable que puede recibir una funcion como parametro
 
   ButtonGreen(
       {Key key,
@@ -26,7 +29,8 @@ class _ButtonGreen extends State<ButtonGreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
-      onTap: widget.onPressed,
+      onTap: widget
+          .onPressed, //cuando se define este tipo de dato se convierte en una variable que puede recibir una funcion como parametro
       child: Container(
         margin: EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
         width: widget.width,
