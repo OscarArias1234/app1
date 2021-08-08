@@ -9,4 +9,6 @@ class AuthRepository {
   Future<FirebaseUser> signInFirebase() => _firebaseAuthAPI.signIn();
   //los future esperan recibir un dato a futuro
 
+  signOut() => _firebaseAuthAPI.signOut();
+  //responsabilidad de llamar el metodo de cierre
 }

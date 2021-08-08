@@ -23,6 +23,11 @@ class UserBloc implements Bloc {
     //este es el metodo que se llama desde la interfaz de usuario
   }
 
+  //2. signOut // llamando el apuntador del repositorio
+  signOut() {
+    _auth_repository.signOut();
+  }
+
   @override
   void dispose() {}
 }
