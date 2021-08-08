@@ -38,14 +38,14 @@ class _ButtonGreen extends State<ButtonGreen> {
         height: widget.heigthButton,
         width: widget.widthButton,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(15.0),
             gradient: LinearGradient(
                 colors: [
                   Color(0xFFa7ff84), //arriba //izquierda
                   Color(0xFF1cbb78) //abajo //derecha
                 ],
-                begin: FractionalOffset(0.2, 0.0),
-                end: FractionalOffset(1.0, 0.6),
+                begin: FractionalOffset(1.0, 0.6),
+                end: FractionalOffset(0.2, 1.9),
                 stops: [0.0, 0.6],
                 tileMode: TileMode.clamp)),
         child: Center(

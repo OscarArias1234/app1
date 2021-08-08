@@ -26,6 +26,8 @@ class _SignInScreen extends State<SignInScreen> {
         children: <Widget>[
           GradientBack("", 10000.0),
           Column(
+            //propiedad utilizada para centrar los elementos de forma vertical
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
                 "Bienvenido a la Primer APP Flutter",
@@ -35,6 +37,7 @@ class _SignInScreen extends State<SignInScreen> {
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.center,
               ),
               ButtonGreen(
                 nameButton: "Login with Gmail",
