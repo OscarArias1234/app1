@@ -3,8 +3,10 @@ import 'firebase_auth.dart';
 
 class AuthRepository {
   //clase que contiene la logica como tal de repository como tal de control de datos, de autenticacion
+
   final _firebaseAuthAPI = FirebaseAuthAPI();
 
   Future<FirebaseUser> signInFirebase() => _firebaseAuthAPI.signIn();
   //los future esperan recibir un dato a futuro
+
 }

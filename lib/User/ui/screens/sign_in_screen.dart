@@ -14,13 +14,13 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreen extends State<SignInScreen> {
-  late UserBloc userBloc;
+  UserBloc userBloc;
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     userBloc = BlocProvider.of(context);
-    return signInGoogleUI();
+    return _handleCurrentSession();
   }
 
   Widget _handleCurrentSession() {
@@ -42,7 +42,7 @@ class _SignInScreen extends State<SignInScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          GradientBack("", 10000.0),
+          GradientBack("", null),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -55,13 +55,13 @@ class _SignInScreen extends State<SignInScreen> {
                     fontWeight: FontWeight.bold),
               ),
               ButtonGreen(
-                nameButton: "Login with Gmail",
+                text: "Login with Gmail",
                 onPressed: () {
                   userBloc.signIn().then((FirebaseUser user) =>
                       print("El usuario es ${user.displayName}"));
                 },
-                heigthButton: 50.0,
-                widthButton: 300.0,
+                width: 300.0,
+                height: 50.0,
               )
             ],
           )
