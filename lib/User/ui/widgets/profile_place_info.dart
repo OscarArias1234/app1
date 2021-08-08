@@ -28,7 +28,7 @@ class ProfilePlaceInfo extends StatelessWidget {
             children: <Widget>[
               Text(
                 //ese place.argument proviene del tipo de variable PLACE
-                this.place.where,
+                this.place.name,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
@@ -36,7 +36,7 @@ class ProfilePlaceInfo extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                this.place.type,
+                this.place.description,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
@@ -47,7 +47,7 @@ class ProfilePlaceInfo extends StatelessWidget {
 
     final steps = Text(
       //parametro que recibe de la variable PLACE
-      'Steps ${this.place.steps}',
+      'Steps ${this.place.likes}',
       style: TextStyle(
           fontFamily: 'Lato',
           fontSize: 14.0,

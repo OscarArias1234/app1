@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'profile_header.dart';
 import '../widgets/profile_places_list.dart';
 import '../widgets/profile_background.dart';
+import 'package:flutter/src/material/refresh_indicator.dart';
 
 class ProfileTrips extends StatelessWidget {
   @override

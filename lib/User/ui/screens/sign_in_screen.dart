@@ -1,4 +1,5 @@
 import 'package:app1/User/bloc/bloc_user.dart';
+import 'package:app1/User/model/user.dart';
 import 'package:app1/platzi_trips.dart';
 import 'package:app1/widgets/button_green.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -58,8 +59,14 @@ class _SignInScreen extends State<SignInScreen> {
                 text: "Login with Gmail",
                 onPressed: () {
                   userBloc.signOut();
-                  userBloc.signIn().then((FirebaseUser user) =>
-                      print("El usuario es ${user.displayName}"));
+                  userBloc.signIn().then((FirebaseUser user) {
+                    userBloc.updateUserData(User(
+                      uid: user.uid,
+                      name: user.displayName,
+                      email: user.email,
+                      photoURL: user.photoUrl,
+                    ));
+                  });
                 },
                 width: 300.0,
                 height: 50.0,

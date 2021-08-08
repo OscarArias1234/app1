@@ -31,6 +31,8 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
       tooltip: "Fav",
       onPressed: onPressedFav,
       child: Icon(this._pressed ? Icons.favorite : Icons.favorite_border),
+      heroTag: null,
+
       //forma de validar si se ha presionado o se una el boolean
     );
   }

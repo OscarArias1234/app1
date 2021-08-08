@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:app1/Place/ui/screens/add_place_screen.dart';
 import 'package:app1/User/bloc/bloc_user.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
@@ -28,7 +31,15 @@ class ButtonsBar extends StatelessWidget {
               Icons.add,
               40.0,
               Color.fromRGBO(255, 255, 255, 1),
-              () => {},
+              () {
+                File image;
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => AddPlaceScreen(
+                              image: image,
+                            )));
+              },
             ),
             //para cerrar sesion
             CircleButton(
