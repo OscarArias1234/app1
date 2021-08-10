@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:app1/Place/model/place.dart';
+import 'package:app1/User/bloc/bloc_user.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/Place/ui/widgets/card_image.dart';
 import 'package:app1/Place/ui/widgets/title_input_location.dart';
@@ -7,6 +9,7 @@ import 'package:app1/widgets/button_purple.dart';
 import 'package:app1/widgets/gradient_back.dart';
 import 'package:app1/widgets/text_input.dart';
 import 'package:app1/widgets/title_header.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   File image;
@@ -20,12 +23,12 @@ class AddPlaceScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreen extends State<AddPlaceScreen> {
+  final _controllerTitlePlace = TextEditingController();
+  final _controllerDescriptionPlace = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
-    final _controllerTitlePlace = TextEditingController();
-    final _controllerDescriptionPlace = TextEditingController();
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
     return Scaffold(
       body: Stack(
@@ -109,6 +112,18 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
 
                       //2. Cloud Firestore
                       //Place - title, description, url, userOwner, likes
+                      userBloc
+                          .updatePlaceData(Place(
+                        name: _controllerTitlePlace.text,
+                        description: _controllerDescriptionPlace.text,
+                        likes: 0,
+                      ))
+                          .whenComplete(() {
+                        //cuando los datos terminen de cargarse me imprima
+                        print("TERMINO");
+                        Navigator.pop(
+                            context); //destruimos a ventana actual y volvemos a la anterior
+                      });
                     },
                   ),
                 )
