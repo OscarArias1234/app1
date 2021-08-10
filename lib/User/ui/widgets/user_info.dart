@@ -1,5 +1,5 @@
-import 'package:app1/User/model/user.dart';
 import 'package:flutter/material.dart';
+import 'package:app1/User/model/user.dart';
 
 class UserInfo extends StatelessWidget {
   User user;
@@ -19,10 +19,7 @@ class UserInfo extends StatelessWidget {
           image: DecorationImage(
               fit: BoxFit.cover,
               //image: AssetImage(user.photoURL)
-              image: NetworkImage(user.photoURL)
-              //aca le decimos que me muestre una foto por url
-              //AssetImage(user.photoUrl),
-              )),
+              image: NetworkImage(user.photoURL))),
     );
 
     final userInfo = Column(

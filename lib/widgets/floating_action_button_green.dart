@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 
 class FloatingActionButtonGreen extends StatefulWidget {
+
   final IconData iconData;
   final VoidCallback onPressed;
 
-  FloatingActionButtonGreen(
-      {Key key, @required this.iconData, @required this.onPressed});
+  FloatingActionButtonGreen({
+    Key key,
+    @required this.iconData,
+    @required this.onPressed
+  });
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return _FloatingActionButtonGreen();
   }
+
 }
 
+
 class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
+
   /*void onPressedFav(){
     Scaffold.of(context).showSnackBar(
         SnackBar(
@@ -36,4 +43,5 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen> {
       heroTag: null,
     );
   }
+
 }

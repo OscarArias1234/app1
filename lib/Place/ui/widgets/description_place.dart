@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../widgets/button_purple.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:app1/Place/model/place.dart';
+import 'package:app1/User/bloc/bloc_user.dart';
+import 'package:app1/widgets/button_purple.dart';
 
 class DescriptionPlace extends StatelessWidget {
   String namePlace;
@@ -11,6 +14,7 @@ class DescriptionPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
 
     final star_half = Container(
       margin: EdgeInsets.only(top: 353.0, right: 3.0),
@@ -36,12 +40,49 @@ class DescriptionPlace extends StatelessWidget {
       ),
     );
 
-    final title_stars = Row(
+    return StreamBuilder<Place>(
+      stream: userBloc.placeSelectedStream,
+      builder: (BuildContext context, AsyncSnapshot<Place> snapshot) {
+        if (snapshot.hasData) {
+          print("PLACE SELECTED: ${snapshot.data.name}");
+          Place place = snapshot.data;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              titleStars(place),
+              descriptionWidget(place.description),
+              ButtonPurple(buttonText: "Navigate", onPressed: () {})
+            ],
+          );
+        } else {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 400.0, left: 20.0, right: 20.0),
+                child: Text(
+                  "Selecciona un lugar",
+                  style: TextStyle(
+                      fontFamily: "Lato",
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w900),
+                  textAlign: TextAlign.left,
+                ),
+              )
+            ],
+          );
+        }
+      },
+    );
+  }
+
+  Widget titleStars(Place place) {
+    return Row(
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(top: 350.0, left: 20.0, right: 20.0),
           child: Text(
-            namePlace,
+            place.name,
             style: TextStyle(
                 fontFamily: "Lato",
                 fontSize: 30.0,
@@ -49,13 +90,26 @@ class DescriptionPlace extends StatelessWidget {
             textAlign: TextAlign.left,
           ),
         ),
-        Row(
-          children: <Widget>[star, star, star, star, star_half],
-        )
+        Container(
+          margin: EdgeInsets.only(
+            top: 370.0,
+          ),
+          child: Text(
+            "Hearts: ${place.likes}",
+            style: TextStyle(
+                fontFamily: "Lato",
+                fontSize: 18.0,
+                fontWeight: FontWeight.w900,
+                color: Colors.amber),
+            textAlign: TextAlign.left,
+          ),
+        ),
       ],
     );
+  }
 
-    final description = Container(
+  Widget descriptionWidget(String descriptionPlace) {
+    return Container(
       margin: new EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
       child: new Text(
         descriptionPlace,
@@ -65,15 +119,6 @@ class DescriptionPlace extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Color(0xFF56575a)),
       ),
-    );
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        title_stars,
-        description,
-        ButtonPurple(buttonText: "Navigate", onPressed: () {})
-      ],
     );
   }
 }

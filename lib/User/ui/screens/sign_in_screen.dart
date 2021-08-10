@@ -5,8 +5,7 @@ import 'package:app1/widgets/button_green.dart';
 import 'package:app1/User/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:app1/platzi_trips.dart';
-import '/widgets/gradient_back.dart';
+import 'package:app1/platzi_trips_cupertino.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -35,7 +34,7 @@ class _SignInScreen extends State<SignInScreen> {
         if (!snapshot.hasData || snapshot.hasError) {
           return signInGoogleUI();
         } else {
-          return PlatziTrips();
+          return PlatziTripsCupertino();
         }
       },
     );

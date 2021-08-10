@@ -1,15 +1,17 @@
 import 'dart:io';
 
-import 'package:app1/Place/model/place.dart';
-import 'package:app1/User/bloc/bloc_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:app1/Place/model/place.dart';
 import 'package:app1/Place/ui/widgets/card_image.dart';
 import 'package:app1/Place/ui/widgets/title_input_location.dart';
+import 'package:app1/User/bloc/bloc_user.dart';
 import 'package:app1/widgets/button_purple.dart';
 import 'package:app1/widgets/gradient_back.dart';
 import 'package:app1/widgets/text_input.dart';
 import 'package:app1/widgets/title_header.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   File image;
@@ -23,12 +25,13 @@ class AddPlaceScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreen extends State<AddPlaceScreen> {
-  final _controllerTitlePlace = TextEditingController();
-  final _controllerDescriptionPlace = TextEditingController();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
+
+    final _controllerTitlePlace = TextEditingController();
+    final _controllerDescriptionPlace = TextEditingController();
 
     return Scaffold(
       body: Stack(
@@ -38,7 +41,6 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
           ),
           Row(
             //App Bar
-
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(top: 25.0, left: 5.0),
@@ -66,28 +68,25 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
           Container(
             margin: EdgeInsets.only(top: 120.0, bottom: 20.0),
             child: ListView(
-              //nos da la posibilidad de hacer scrool si se desborda en vertical
               children: <Widget>[
                 Container(
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
-                    pathImage: widget.image.path,
+                    pathImage: widget.image.path, //"assets/img/sunset.jpeg",
                     iconData: Icons.camera_alt,
                     width: 350.0,
-                    height: 250.0,
-                    left: 0,
+                    height: 250.0, left: 0,
+                    internet: false, onPressedFabIcon: () {},
                   ),
                 ), //Foto
                 Container(
                   //TextField Title
-                  //se crea un area segura para que no se salga del textfield o desborde el texto
                   margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
                   child: TextInput(
                     hintText: "Title",
                     inputType: null,
                     maxLines: 1,
-                    controller:
-                        _controllerTitlePlace, //este controller nos captura los datos del textInput
+                    controller: _controllerTitlePlace,
                   ),
                 ),
                 TextInput(
@@ -95,35 +94,58 @@ class _AddPlaceScreen extends State<AddPlaceScreen> {
                   hintText: "Description",
                   inputType: TextInputType.multiline,
                   maxLines: 4,
-                  controller:
-                      _controllerDescriptionPlace, //este controller me captura todo lo del textInput de la description
+                  controller: _controllerDescriptionPlace,
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 20.0),
                   child: TextInputLocation(
-                      hintText: "Add Location", iconData: Icons.location_on),
+                    hintText: "Add Location",
+                    iconData: Icons.location_on,
+                    controller: null,
+                  ),
                 ),
                 Container(
                   width: 70.0,
                   child: ButtonPurple(
                     buttonText: "Add Place",
                     onPressed: () {
-                      //1. Firebase Storage
-                      //url -
+                      //ID del usuario logeado actualmente
+                      userBloc.currentUser.then((FirebaseUser user) {
+                        if (user != null) {
+                          //lo que se hara aca especificamente es la subida del archivo
+                          String uid = user.uid;
+                          String path =
+                              "${uid}/${DateTime.now().toString()}.jpg";
+                          // esto es para asignarle un campo con fecha y hora para volver el archivo unico
+                          //1. Firebase Storage
+                          //url -
+                          userBloc //llamamos todos los metodos que dejamos listos en el patron bloc /userBloc
+                              .uploadFile(path, widget.image)
+                              .then((StorageUploadTask storageUploadTask) {
+                            storageUploadTask
+                                .onComplete //en este objeto es que voy a recuperar la url de la imagen una vez sea subida
+                                .then((StorageTaskSnapshot snapshot) {
+                              snapshot.ref.getDownloadURL().then((urlImage) {
+                                //y aca es donde voy a almacenar la url recuperada
+                                print("URLIMAGE: ${urlImage}");
 
-                      //2. Cloud Firestore
-                      //Place - title, description, url, userOwner, likes
-                      userBloc
-                          .updatePlaceData(Place(
-                        name: _controllerTitlePlace.text,
-                        description: _controllerDescriptionPlace.text,
-                        likes: 0,
-                      ))
-                          .whenComplete(() {
-                        //cuando los datos terminen de cargarse me imprima
-                        print("TERMINO");
-                        Navigator.pop(
-                            context); //destruimos a ventana actual y volvemos a la anterior
+                                //2. Cloud Firestore
+                                //Place - title, description, url, userOwner, likes
+                                userBloc
+                                    .updatePlaceData(Place(
+                                  name: _controllerTitlePlace.text,
+                                  description: _controllerDescriptionPlace.text,
+                                  urlImage: urlImage,
+                                  likes: 0,
+                                ))
+                                    .whenComplete(() {
+                                  print("TERMINO");
+                                  Navigator.pop(context);
+                                });
+                              });
+                            });
+                          });
+                        }
                       });
                     },
                   ),

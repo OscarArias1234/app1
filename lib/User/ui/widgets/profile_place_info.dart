@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../Place/model/place.dart';
-import '../../../widgets/floating_action_button_green.dart';
+import 'package:app1/Place/model/place.dart';
+import 'package:app1/widgets/floating_action_button_green.dart';
 
 class ProfilePlaceInfo extends StatelessWidget {
   Place place;
@@ -22,15 +22,15 @@ class ProfilePlaceInfo extends StatelessWidget {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                //ese place.argument proviene del tipo de variable PLACE
+              /*Text(
                 this.place.name,
                 style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
                     fontSize: 12.0,
-                    fontWeight: FontWeight.bold),
-              ),
+                    fontWeight: FontWeight.bold
+                ),
+              ),*/
               Text(
                 this.place.description,
                 style: TextStyle(
@@ -72,7 +72,13 @@ class ProfilePlaceInfo extends StatelessWidget {
 
     return Stack(
       alignment: Alignment(0.8, 1.25),
-      children: <Widget>[card, FloatingActionButtonGreen()],
+      children: <Widget>[
+        card,
+        FloatingActionButtonGreen(
+          iconData: Icons.favorite_border,
+          onPressed: () {},
+        )
+      ],
     );
   }
 }

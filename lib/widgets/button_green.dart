@@ -1,22 +1,13 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class ButtonGreen extends StatefulWidget {
-  //ACA SIMPLEMENTE SE CREAN LOS PARAMETROS GENERALES PARA PODER CREAR UN BOTTON
-  //REUSABLE PARA CUALQUIER VISTA DONDE SE LLAME Y SE LE ENVIEN LOS PARAETROS
+
   final String text;
   double width = 0.0;
   double height = 0.0;
   final VoidCallback onPressed;
-  //cuando se define este tipo de dato se convierte en una variable que puede recibir una funcion como parametro
 
-  ButtonGreen(
-      {Key key,
-      @required this.text,
-      @required this.onPressed,
-      this.height,
-      this.width});
+  ButtonGreen({Key key, @required this.text, @required this.onPressed, this.height, this.width});
 
   @override
   State createState() {
@@ -24,28 +15,36 @@ class ButtonGreen extends StatefulWidget {
   }
 }
 
-class _ButtonGreen extends State<ButtonGreen> {
+class _ButtonGreen extends State<ButtonGreen>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
-      onTap: widget
-          .onPressed, //cuando se define este tipo de dato se convierte en una variable que puede recibir una funcion como parametro
+      onTap: widget.onPressed,
       child: Container(
-        margin: EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
+        margin: EdgeInsets.only(
+            top: 30.0,
+            left: 20.0,
+            right: 20.0
+        ),
         width: widget.width,
         height: widget.height,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             gradient: LinearGradient(
                 colors: [
-                  Color(0xFFa7ff84), //arriba
-                  Color(0xFF1cbb78) //bajo
+                  Color(0xFFa7ff84),//arriba
+                  Color(0xFF1cbb78)//bajo
                 ],
                 begin: FractionalOffset(0.2, 0.0),
                 end: FractionalOffset(1.0, 0.6),
                 stops: [0.0, 0.6],
-                tileMode: TileMode.clamp)),
+                tileMode: TileMode.clamp
+
+            )
+
+        ),
+
         child: Center(
           child: Text(
             widget.text,
@@ -53,9 +52,12 @@ class _ButtonGreen extends State<ButtonGreen> {
                 fontSize: 18.0,
                 fontFamily: "Lato",
                 color: Colors.white,
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.bold
+            ),
+
           ),
         ),
+
       ),
     );
   }

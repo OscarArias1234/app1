@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../widgets/floating_action_button_green.dart';
+import 'package:app1/widgets/floating_action_button_green.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CardImageWithFabIcon extends StatelessWidget {
   final double height;
@@ -8,6 +9,7 @@ class CardImageWithFabIcon extends StatelessWidget {
   final String pathImage;
   final VoidCallback onPressedFabIcon;
   final IconData iconData;
+  bool internet = true;
 
   CardImageWithFabIcon(
       {Key key,
@@ -16,6 +18,7 @@ class CardImageWithFabIcon extends StatelessWidget {
       @required this.height,
       @required this.onPressedFabIcon,
       @required this.iconData,
+      this.internet,
       this.left});
 
   @override
@@ -27,10 +30,15 @@ class CardImageWithFabIcon extends StatelessWidget {
       width: width,
       margin: EdgeInsets.only(left: left),
       decoration: BoxDecoration(
-          image:
-              DecorationImage(fit: BoxFit.cover, image: AssetImage(pathImage)),
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              image: internet
+                  ? CachedNetworkImageProvider(pathImage)
+                  : AssetImage(pathImage)
+              //image: CachedNetworkImageProvider(pathImage)
+              ),
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          shape: BoxShape.rectangle,
+          //shape: BoxShape.rectangle,
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.black38,
@@ -51,14 +59,3 @@ class CardImageWithFabIcon extends StatelessWidget {
     );
   }
 }
-
- /*void onPressedFav() {
-    setState(() {
-      _pressed = !this._pressed;
-    });
-
-    Scaffold.of(context).showSnackBar(SnackBar(
-        content: this._pressed
-            ? Text("agregaste a favoritos")
-            : Text("Eliminaste de Favoritos")));
-  }*/
