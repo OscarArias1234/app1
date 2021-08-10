@@ -1,11 +1,12 @@
-import 'package:app1/User/bloc/bloc_user.dart';
-import 'package:app1/User/model/user.dart';
-import 'package:app1/platzi_trips.dart';
-import 'package:app1/widgets/button_green.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '/widgets/gradient_back.dart';
+import 'package:app1/User/model/user.dart';
+import 'package:app1/widgets/gradient_back.dart';
+import 'package:app1/widgets/button_green.dart';
+import 'package:app1/User/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app1/platzi_trips.dart';
+import '/widgets/gradient_back.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -16,10 +17,12 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreen extends State<SignInScreen> {
   UserBloc userBloc;
+  double screenWidht;
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    screenWidht = MediaQuery.of(context).size.width;
     userBloc = BlocProvider.of(context);
     return _handleCurrentSession();
   }
@@ -43,17 +46,22 @@ class _SignInScreen extends State<SignInScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          GradientBack("", null),
+          GradientBack(height: null),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                "Bienvenido \n a mi primer App Flutter",
-                style: TextStyle(
-                    fontSize: 37.0,
-                    fontFamily: "Lato",
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+              Flexible(
+                child: Container(
+                  width: screenWidht,
+                  child: Text(
+                    "Welcome \n This is your Travel App",
+                    style: TextStyle(
+                        fontSize: 37.0,
+                        fontFamily: "Lato",
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
               ButtonGreen(
                 text: "Login with Gmail",
@@ -61,11 +69,10 @@ class _SignInScreen extends State<SignInScreen> {
                   userBloc.signOut();
                   userBloc.signIn().then((FirebaseUser user) {
                     userBloc.updateUserData(User(
-                      uid: user.uid,
-                      name: user.displayName,
-                      email: user.email,
-                      photoURL: user.photoUrl,
-                    ));
+                        uid: user.uid,
+                        name: user.displayName,
+                        email: user.email,
+                        photoURL: user.photoUrl));
                   });
                 },
                 width: 300.0,

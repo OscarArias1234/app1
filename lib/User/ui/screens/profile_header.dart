@@ -16,25 +16,56 @@ class ProfileHeader extends StatelessWidget {
     userBloc = BlocProvider.of<UserBloc>(context);
 
     //este stream lo que hace es estar atento al movimiento de los datos
-
+//se debe monitorear el objeto snapshot,
+//primero el estado de la coneccion
+//validando en que estado se encuentra
+//si esta iniciando la coneccion
+//si esta iniciada
+//si fue termianda
     return StreamBuilder(
       stream: userBloc.streamFirebase,
-      // ignore: missing_return
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        //se debe monitorear el objeto snapshot,
         switch (snapshot.connectionState) {
-          //primero el estado de la coneccion
-          case ConnectionState.waiting: //validando en que estado se encuentra
+          case ConnectionState.waiting:
             return CircularProgressIndicator();
-          case ConnectionState.none: //si esta iniciando la coneccion
+          case ConnectionState.none:
             return CircularProgressIndicator();
-          case ConnectionState.active: //si esta iniciada
+          case ConnectionState.active:
             return showProfileData(snapshot);
-          case ConnectionState.done: //si fue termianda
+          case ConnectionState.done:
             return showProfileData(snapshot);
         }
       },
     );
+
+    /*final title = Text(
+      'Profile',
+      style: TextStyle(
+          fontFamily: 'Lato',
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 30.0
+      ),
+    );
+
+    return Container(
+      margin: EdgeInsets.only(
+          left: 20.0,
+          right: 20.0,
+          top: 50.0
+      ),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              title
+            ],
+          ),
+          UserInfo('assets/img/ann.jpg', 'Anahí Salgado','anahi@platzi.com'),
+          ButtonsBar()
+        ],
+      ),
+    );*/
   }
 
   Widget showProfileData(AsyncSnapshot snapshot) {

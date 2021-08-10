@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:app1/User/model/user.dart';
 import 'package:app1/User/repository/auth_repository.dart';
 import 'package:app1/User/repository/cloud_firestore_repository.dart';
@@ -24,18 +22,16 @@ class UserBloc implements Bloc {
   //1. SignIn a la aplicación Google
   Future<FirebaseUser> signIn() {
     return _auth_repository.signInFirebase();
-    //este es el metodo que se llama desde la interfaz de usuario
-  }
+  } //este es el metodo que se llama desde la interfaz de usuario
 
-  //2. signOut // llamando el apuntador del repositorio
-  signOut() {
-    _auth_repository.signOut();
-  }
-
-  //3. registrar Usuario en base de datos
+  //2. Registrar usuario en base de datos
   final _cloudFirestoreRepository = CloudFirestoreRepository();
   void updateUserData(User user) =>
       _cloudFirestoreRepository.updateUserDataFirestore(user);
+
+  signOut() {
+    _auth_repository.signOut();
+  } //2. signOut // llamando el apuntador del repositorio
 
   @override
   void dispose() {}

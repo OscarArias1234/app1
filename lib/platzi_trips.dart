@@ -58,7 +58,9 @@ class _PlatziTrips extends State<PlatziTrips> {
         ],
       ),
 
-      body: widgetsChildren[indexTap], //inicializador del indice
+      body: widgetsChildren[indexTap],
+
+      //inicializador del indice
       /* bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
           canvasColor: Colors.black,

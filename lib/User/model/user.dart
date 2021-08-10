@@ -16,13 +16,12 @@ class User {
   final List<Place> myFavoritePlaces;
 
   //ahora solo creamos el metodo constructor
-  User({
-    Key key,
-    @required this.uid,
-    @required this.name,
-    @required this.email,
-    @required this.photoURL,
-    this.myPlaces,
-    this.myFavoritePlaces,
-  });
+  User(
+      {Key key,
+      @required this.uid,
+      @required this.name,
+      @required this.email,
+      @required this.photoURL,
+      this.myPlaces,
+      this.myFavoritePlaces});
 }

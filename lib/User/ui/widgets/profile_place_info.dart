@@ -3,7 +3,6 @@ import '../../../Place/model/place.dart';
 import '../../../widgets/floating_action_button_green.dart';
 
 class ProfilePlaceInfo extends StatelessWidget {
-  //la variable place es creada en la clase place list donde se incorporan todos los parametro como si fueran arreglos
   Place place;
 
   ProfilePlaceInfo(this.place);
@@ -15,10 +14,7 @@ class ProfilePlaceInfo extends StatelessWidget {
     final place = Text(
       this.place.name,
       style: TextStyle(
-        fontFamily: 'Lato',
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
-      ),
+          fontFamily: 'Lato', fontSize: 20.0, fontWeight: FontWeight.bold),
     );
 
     final placeInfo = Padding(
@@ -47,7 +43,7 @@ class ProfilePlaceInfo extends StatelessWidget {
 
     final steps = Text(
       //parametro que recibe de la variable PLACE
-      'Steps ${this.place.likes}',
+      'Heart ${this.place.likes}',
       style: TextStyle(
           fontFamily: 'Lato',
           fontSize: 14.0,

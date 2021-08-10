@@ -20,10 +20,10 @@ class FirebaseAuthAPI {
     return user;
   }
 
-  //metodo para ejecutar el cierre de sesion // responsabilidad de crear el metodo de cierre
+//metodo para ejecutar el cierre de sesion // responsabilidad de crear el metodo de cierre
   signOut() async {
     //cerramos sesion en la app en firebase
-    await _auth.signOut().then((onValue) => print("Sesion Cerrada"));
+    await _auth.signOut().then((onValue) => print("Sesión cerrada"));
     //cerramos sesion del manejador de google
     googleSignIn.signOut();
     print("Sesiones cerradas");

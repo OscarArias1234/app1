@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class UserInfo extends StatelessWidget {
   User user;
 
-  UserInfo(this.user);
+  UserInfo(@required this.user);
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +17,12 @@ class UserInfo extends StatelessWidget {
               color: Colors.white, width: 2.0, style: BorderStyle.solid),
           shape: BoxShape.circle,
           image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(
-                user.photoURL), //aca le decimos que me muestre una foto por url
-            //AssetImage(user.photoUrl),
-          )),
+              fit: BoxFit.cover,
+              //image: AssetImage(user.photoURL)
+              image: NetworkImage(user.photoURL)
+              //aca le decimos que me muestre una foto por url
+              //AssetImage(user.photoUrl),
+              )),
     );
 
     final userInfo = Column(
