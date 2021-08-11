@@ -54,9 +54,11 @@ class CloudFirestoreAPI {
     });
   }
 
+//preparando la lista de los lugares recibidos en el snapshot
   List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) {
     List<ProfilePlace> profilePlaces = List<ProfilePlace>();
     placesListSnapshot.forEach((p) {
+      //se crea el ciclo para que se repita mientras encuentra tados
       profilePlaces.add(ProfilePlace(
         Place(
             name: p.data['name'],

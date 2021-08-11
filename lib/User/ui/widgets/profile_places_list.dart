@@ -34,12 +34,14 @@ class ProfilePlacesList extends StatelessWidget {
           stream: userBloc.myPlacesListSream(
               user.uid), //nuestro stream debe ser el bloc qery
           builder: (context, AsyncSnapshot snapshot) {
+            //en este snapshot ya recibimos la lista de imagenes
             switch (snapshot.connectionState) {
               //va a monitorear el estado de la coneccion
               case ConnectionState.waiting:
                 return CircularProgressIndicator();
               case ConnectionState.done:
                 return Column(
+                    //creamos la listas de todos los
                     children: userBloc.buildMyPlaces(snapshot.data.documents));
 
               case ConnectionState.active:

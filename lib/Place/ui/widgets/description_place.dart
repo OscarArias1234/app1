@@ -44,6 +44,7 @@ class DescriptionPlace extends StatelessWidget {
       stream: userBloc.placeSelectedStream,
       builder: (BuildContext context, AsyncSnapshot<Place> snapshot) {
         if (snapshot.hasData) {
+          //se valida el estado de los datos
           print("PLACE SELECTED: ${snapshot.data.name}");
           Place place = snapshot.data;
           return Column(

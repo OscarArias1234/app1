@@ -45,17 +45,21 @@ class UserBloc implements Bloc {
       placesListStream; //este stream nos permite acceder al anterior
   //List<CardImageWithFabIcon> buildPlaces(List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
   List<Place> buildPlaces(
-          List<DocumentSnapshot> placesListSnapshot, User user) =>
+          //el bloc es el que nos permite directamente acceder a los datos, aca por tal, contruimos la lista que almacena esos lugares
+          List<DocumentSnapshot> placesListSnapshot,
+          User user) =>
       _cloudFirestoreRepository.buildPlaces(placesListSnapshot, user);
+
   Future likePlace(Place place, String uid) =>
       _cloudFirestoreRepository.likePlace(place, uid);
 
   Stream<QuerySnapshot> myPlacesListSream(String uid) => Firestore.instance
       .collection(CloudFirestoreAPI().PLACES)
-      .where("userOwner",
-          isEqualTo: Firestore.instance
+      .where(
+          "userOwner", //aca se filtrar los datos por el id del usuario //vid.50
+          isEqualTo: Firestore.instance //comparar referencia
               .document("${CloudFirestoreAPI().USERS}/${uid}"))
-      .snapshots();
+      .snapshots(); //este metodo me convierte la cadena en un string
   List<ProfilePlace> buildMyPlaces(List<DocumentSnapshot> placesListSnapshot) =>
       _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
 
@@ -63,6 +67,7 @@ class UserBloc implements Bloc {
       StreamController<Place>();
   Stream<Place> get placeSelectedStream => placeSelectedStreamController.stream;
   StreamSink<Place> get placeSelectedSink => placeSelectedStreamController.sink;
+  //Ahora dejaremos disponible el Stream para que se le pueda insertar el elemento Place, esto lo hacemos através del método sink que solo se puede implementar al StreamController.
 
 //43
   final _firebaseStorageRepository = FirebaseStorageRepository();

@@ -31,7 +31,7 @@ class _CardImageList extends State<CardImageList> {
     return Container(
         height: 350.0,
         child: StreamBuilder(
-            stream: userBloc.placesStream,
+            stream: userBloc.placesStream, //esto es para estar en modo escucha
             builder: (context, AsyncSnapshot snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
@@ -56,6 +56,7 @@ class _CardImageList extends State<CardImageList> {
   }
 
   Widget listViewPlaces(List<Place> places) {
+    //este metodo nos recibe la lista
     void setLiked(Place place) {
       setState(() {
         place.liked = !place.liked;
@@ -72,6 +73,7 @@ class _CardImageList extends State<CardImageList> {
       scrollDirection: Axis.horizontal,
       children: places.map((place) {
         return GestureDetector(
+          //este widget GestureDetector hace que el area se vuelva clickeble, y nos provee un metodo ontap
           onTap: () {
             print("CLICK PLACE: ${place.name}");
             userBloc.placeSelectedSink.add(place);

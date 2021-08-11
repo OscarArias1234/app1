@@ -15,6 +15,7 @@ class ProfileTrips extends StatelessWidget {
     userBloc = BlocProvider.of<UserBloc>(context);
 
     return StreamBuilder(
+      //crearemos un filtro para traer la informacion correspondiente solo al id que se encuentre logeado
       stream: userBloc.authStatus,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         switch (snapshot.connectionState) {
